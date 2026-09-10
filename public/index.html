@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="对白：给短剧编剧的台词打磨工作台。整场输入，润色表达，对照采用。">
+  <title>对白 · 台词打磨工作台</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#scene">跳到剧本输入</a>
+<header class="topbar"><a class="brand" href="/" aria-label="对白首页"><img src="/favicon.svg" width="32" height="32" alt=""><strong>对白</strong><span>台词打磨工作台</span></a><span class="edition">短剧创作 · 体验版 <span class="dot"></span></span></header>
+<main>
+  <section class="intro"><div><p class="eyebrow">让人物开口，让故事留下。</p><h1>好台词，<span>像人说的话。</span></h1><p class="lead">放入一场剧本，把解释和总结，打磨成角色此刻真正想说的话。</p></div><div class="intro-note"><span class="note-line"></span><p>人物的脾气留下<br>多余的腔调拿掉</p><small>从这一场开始 ↙</small></div></section>
+  <div class="workspace">
+    <aside class="rail" aria-label="创作流程"><span class="rail-label">这一次打磨</span><ol><li id="step-input" aria-current="step"><span>01</span><div>放入剧本<small>完整场景，理解前后</small></div></li><li id="step-compare"><span>02</span><div>对照台词<small>每一处修改，都看得见</small></div></li><li id="step-draft"><span>03</span><div>带走定稿<small>决定权在你</small></div></li></ol><div class="rail-bottom"><span class="tiny-label">一场，认真打磨。</span><p>先减少模板腔，再处理<br>人物情绪和前后接话。</p></div></aside>
+    <div class="work-area">
+      <section class="panel" id="input-panel" aria-labelledby="input-title">
+        <div class="panel-heading"><div><span class="kicker">SCENE / 01</span><h2 id="input-title">先把这一场放进来</h2></div><button class="quiet" id="load-example" type="button">试试示例 <span aria-hidden="true">↗</span></button></div>
+        <form id="form">
+          <div class="editor-top"><label for="scene">剧本原稿</label><div><button type="button" class="text-button" id="import">导入 TXT</button><input id="file" type="file" accept=".txt,text/plain" hidden><span class="separator">/</span><span id="count">0 / 5,000 字</span></div></div>
+          <textarea id="scene" maxlength="5000" spellcheck="false" aria-describedby="format-hint recognition" placeholder="贴入完整场景，保留动作和前后对话。&#10;&#10;例：&#10;1-1 社区排练室门口 夜&#10;△许晴贴好九点锁门的通知。&#10;沈悦：钥匙先借我两周行不行？我们下周就演了。&#10;许晴：连续两周的使用安排我现在不能批准，不过今晚我可以让你们使用到九点。"></textarea>
+          <div class="editor-bottom"><span id="format-hint">每句台词写成「角色：台词」，动作单独一行。</span><span id="recognition">等待你的故事</span></div>
+          <details class="context-box"><summary>补充人物或背景 <span>选填，剧本里已有就不用填</span></summary><label class="sr-only" for="context">人物或背景</label><textarea id="context" maxlength="1000" rows="3" placeholder="例如：两人是老朋友；许晴可以借出今晚的场地，但不能决定后续安排。"></textarea></details>
+          <div id="access-area" class="access" hidden><label for="access-code">体验码</label><input id="access-code" type="password" maxlength="128" autocomplete="off" placeholder="输入随链接提供的体验码"></div>
+          <div class="submit-row"><div class="scope-note"><span aria-hidden="true">◈</span> 保留场景和动作，专注台词表达</div><button class="primary" id="optimize" type="submit" disabled>开始打磨 <span aria-hidden="true">→</span></button></div>
+          <p class="privacy">点击打磨后，本场文本将发送至 DeepSeek。页面不自动保存剧本，离开前请导出。</p>
+        </form>
+      </section>
+      <div class="feedback" id="status" role="status" aria-live="polite">正在连接体验服务…</div>
+      <section id="result-panel" class="panel" hidden aria-labelledby="result-title">
+        <div class="panel-heading"><div><span class="kicker">REWRITE / 02</span><h2 id="result-title" tabindex="-1">听听，哪里不一样</h2><p id="result-summary" class="subtext"></p></div><span class="result-label">改稿建议</span></div>
+        <p class="review-note">通读前后再决定：人物想要什么、答应了什么，是否还和原稿一致。</p>
+        <div class="comparison-head"><span>原台词</span><span>建议台词 <small>可按句保留原文</small></span></div>
+        <div id="changes"></div>
+        <details class="full-scene"><summary>连读完整场景 <span>看看修改后能否接住前后对话</span></summary><div class="full-scripts"><section><h3>原稿</h3><pre id="full-original"></pre></section><section><h3>当前所选建议</h3><pre id="full-selected"></pre></section></div></details>
+        <div class="result-actions"><button class="quiet" id="keep-all" type="button">全部保留原句</button><button class="primary" id="adopt" type="button">采用全部修改 →</button></div>
+      </section>
+      <section id="draft-panel" class="panel" hidden aria-labelledby="draft-title">
+        <div class="panel-heading"><div><span class="kicker">YOUR DRAFT / 03</span><h2 id="draft-title" tabindex="-1">这一稿，由你定</h2></div><button class="quiet" id="undo" type="button">撤销本次采用</button></div>
+        <p class="subtext">可以继续手改；复制和导出始终取下面这份正文。</p>
+        <label for="draft" class="sr-only">采用后的完整剧本，可继续编辑</label><textarea id="draft" spellcheck="false" maxlength="20000"></textarea>
+        <div class="draft-actions"><span id="draft-count"></span><div><button class="quiet" id="copy" type="button">复制正文</button><button class="primary" id="export" type="button">导出 TXT <span aria-hidden="true">↓</span></button></div></div>
+      </section>
+      <section class="empty-note" id="empty-note"><span class="quote-mark" aria-hidden="true">“</span><p>台词不必句句漂亮。<br><strong>要像这个人，在这个时候，会说的话。</strong></p><span class="empty-line"></span></section>
+    </div>
+  </div>
+  <footer><span>对白 / 为写故事的人，留一张改稿的桌子。</span><span>一次一场 · 最多 5,000 字</span></footer>
+</main>
+<dialog id="confirm-dialog"><h2 id="confirm-title">保留当前工作</h2><p id="confirm-text"></p><div class="dialog-actions"><button class="quiet" id="confirm-cancel">取消</button><button class="primary" id="confirm-ok">继续</button></div></dialog>
+</body>
+</html>
