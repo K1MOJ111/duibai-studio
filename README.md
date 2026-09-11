@@ -2,11 +2,11 @@
 
 **当前状态：已上线，已完成线上真实 API 与浏览器关键路径验证（2026-09-11）。**
 
-在线体验：[duibai-studio.vercel.app](https://duibai-studio.vercel.app)，体验码由候选人私下提供。
+在线体验：[duibai-studio.vercel.app](https://duibai-studio.vercel.app)，体验码由维护者私下提供。
 
 公开源码：[K1MOJ111/duibai-studio](https://github.com/K1MOJ111/duibai-studio)。
 
-演示录屏：[3 分 33 秒字幕版](https://github.com/K1MOJ111/duibai-studio/releases/download/v0.1.0/duibai-demo-final.mp4)，展示同版代码的本地真实调用；线上另已独立验证。实际投入约 3 小时，为候选人估算。
+演示录屏：[3 分 33 秒字幕版](https://github.com/K1MOJ111/duibai-studio/releases/download/v0.1.0/duibai-demo-final.mp4)，展示同版代码的本地真实调用；线上另已独立验证。实际投入约 3 小时。
 
 给短剧编剧的一场台词精修工具。把完整场景贴进来，获得建议稿，对照后决定采用，继续编辑并导出 TXT。
 
@@ -53,15 +53,15 @@ Vercel 已实际部署：静态文件在 `public/`，模型代理在 `api/optimi
 在 Vercel 导入本仓库，使用 Node.js 24、Other 框架、`public` 输出目录。设置服务端环境变量：
 
 - `DEEPSEEK_API_KEY`：真实模型密钥，通过平台环境变量界面或 CLI 标准输入配置，禁止写入仓库。
-- `DEMO_ACCESS_CODE`：至少 12 个字符的随机体验码，私下提供给评审。
+- `DEMO_ACCESS_CODE`：至少 12 个字符的随机体验码，私下提供给体验用户。
 
-线上缺少有效体验码时拒绝调用模型。不要将体验码当作多用户账户系统；它只供有限评审分享。本版只有单进程并发保护，不保证多个云实例之间的全局次数或费用上限。若开放公众使用，优先补共享配额控制。没有服务端剧本数据库、内容日志或自动备份；模型服务提供者会收到用户主动提交的文本。
+线上缺少有效体验码时拒绝调用模型。不要将体验码当作多用户账户系统；它只供小范围体验分享。本版只有单进程并发保护，不保证多个云实例之间的全局次数或费用上限。若开放公众使用，优先补共享配额控制。没有服务端剧本数据库、内容日志或自动备份；模型服务提供者会收到用户主动提交的文本。
 
 参考：[DeepSeek Chat Completions](https://api-docs.deepseek.com/api/create-chat-completion/)、[Vercel Node.js Functions](https://vercel.com/docs/functions/runtimes/node-js)。
 
 ## 文件
 
-`public/`：界面和共享文本校验；`api/optimize.js`：模型请求与服务端边界；`local.mjs`：本地入口；`rewrite-prompt.txt`：当前修改方法；`test.mjs`：离线检查；`evaluation.json`：六次模型输入、原始建议、用量与耗时。真实验证结果和当前边界见 `VALIDATION.md`。本地调试产物在被忽略的 `output/` 中。
+`public/`：界面和共享文本校验；`api/optimize.js`：模型请求与服务端边界；`local.mjs`：本地入口；`rewrite-prompt.txt`：当前修改方法；`test.mjs`：离线检查；`evaluation.json`：六次模型输入、原始建议、用量与耗时。产品说明见 `PRODUCT.md`，真实验证结果和当前边界见 `VALIDATION.md`。本地调试产物在被忽略的 `output/` 中。
 
 ## 产品选择与下一步
 
