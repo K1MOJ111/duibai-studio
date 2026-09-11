@@ -6,7 +6,7 @@
 
 公开源码：[K1MOJ111/duibai-studio](https://github.com/K1MOJ111/duibai-studio)。
 
-演示录屏：[3 分 33 秒字幕版](https://github.com/K1MOJ111/duibai-studio/releases/download/v0.1.0/duibai-demo.mp4)，展示同版代码的本地真实调用；线上另已独立验证。
+演示录屏：[3 分 33 秒字幕版](https://github.com/K1MOJ111/duibai-studio/releases/download/v0.1.0/duibai-demo-final.mp4)，展示同版代码的本地真实调用；线上另已独立验证。实际投入约 3 小时，为候选人估算。
 
 给短剧编剧的一场台词精修工具。把完整场景贴进来，获得建议稿，对照后决定采用，继续编辑并导出 TXT。
 
